@@ -150,3 +150,7 @@ body {
         color: #777;
     }
 }
+
+.form-control, .btn{
+    border-radius: 0;
+}
