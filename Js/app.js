@@ -49,12 +49,36 @@ function signoutUser() {
 
 function createUser(email, password) {
     console.log('Creando el usuario con email ' + email);
+    var name, correo, photoUrl, uid, emailVerified;
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(function (user) {
+
+            alert("Correo registrado ");
+            var user1 = firebase.auth().currentUser;
            
-            alert("Correo registrado");
-            user
+            console.log("Sign-in provider: " + user1.providerId);
+            console.log("  Provider-specific UID: " + user1.uid);
+            console.log("  Name: " + user1.displayName);
+            console.log("  Email: " + user1.email);
+            console.log("  Photo URL: " + user1.photoURL);
+
+
+            firebase.database().ref('Empresas/' + user1.uid).set({
+                id: user1.uid,
+                correo: user1.email
+              
+
+            }, function (error) {
+                if (error) {
+                    //console.log(' The write failed...');
+                   alert('No se puede insert');
+                    // The write failed... 
+                } else {
+                   // location.href = '../formularios/inicio.html';
+                    console.log(' Data saved successfully!');
+                }
+            });
 
 
         })
@@ -71,12 +95,17 @@ function loginUser(email, password) {
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then(function (user) {
             console.log('Credenciales correctas, ¡bienvenido!');
+            location.href = 'formularios/inicio.html';
+          
             
         })
         .catch(function (error) {
             console.log(error);
         });
 }
+
+
+
 
 
 /*
@@ -112,12 +141,10 @@ function LoginGoogle() {
 
     //alert("");
 
-    //console.log("token" + provider);
     firebase.auth().signInWithPopup(provider).then(function (result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
         var token = result.credential.accessToken;
         // The signed-in user info.
-        console.log("token" + token);
         var user = result.user;
         // ...
     }).catch(function (error) {
@@ -129,27 +156,8 @@ function LoginGoogle() {
         // The firebase.auth.AuthCredential type that was used.
         var credential = error.credential;
         // ...
-
-        console.log("token" + email);
     });
 
 
-    firebase.auth().getRedirectResult().then(function (result) {
-        if (result.credential) {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            var token = result.credential.accessToken;
-            // ...
-        }
-        // The signed-in user info.
-        var user = result.user;
-    }).catch(function (error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        // ...
-    });
+    
 }
