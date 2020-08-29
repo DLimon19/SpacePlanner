@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,74 +13,91 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <img src="./imagenes/logo-sp2.png" alt="" style="width: 20%;"> 
+                <img src="./imagenes/logo-sp2.png" alt="" style="width: 20%;">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
-            
+
         </div>
-      </nav>
-    
-      <header class="main-header">
+    </nav>
+
+    <header class="main-header">
         <div class="background-overlay">
-        <div class="container">
-          <div class="row">
-              <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                  <div class="card card-signin my-5">
-                      <div class="card-body">
-                          <h5 class="card-title text-center">Sign In</h5>
-                          <form class="form-signin">
-                              <div class="form-label-group">
-                                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                                  <label for="inputEmail">Email address</label>
-                              </div>
-  
-                              <div class="form-label-group">
-                                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                                  <label for="inputPassword">Password</label>
-                              </div>
-  
-                              <div class="custom-control custom-checkbox mb-3">
-                                  <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                  <label class="custom-control-label" for="customCheck1">Remember password</label>
-                              </div>
-                              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
-                              <hr class="my-4">
-                              <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google"></i> Sign in with Google</button>
-                              <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook"></i> Sign in with Facebook</button>
-                          </form>
-                      </div>
-                  </div>
-              </div>
-          </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                        <div class="card card-signin my-5">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">Sign In</h5>
+                                <form class="form-signin" id="form" name="loginForm">
+                                    <div class="form-label-group">
+                                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                                        <label for="inputEmail">Email address</label>
+                                    </div>
+
+                                    <div class="form-label-group">
+                                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                        <label for="inputPassword">Password</label>
+                                    </div>
+                                    <div class="">
+                                        <input type="radio"
+                                               name="isLoginOrSignup"
+                                               id="radioIsLogin"
+                                               value="isLogin"
+                                               checked />
+                                        <label for="radioIsLogin">Entrar a mi cuenta</label>
+
+                                        <input type="radio"
+                                               name="isLoginOrSignup"
+                                               id="radioIsSignup"
+                                               value="isSignup" />
+                                        <label for="radioIsSignup">Crear cuenta</label>
+
+                                    </div>
+                                   
+                                    <div class="custom-control custom-checkbox mb-3">
+                                        <!--<input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">Remember password</label>-->
+                                    </div>
+                                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                                    <hr class="my-4">
+                                    <button id="googleBtm" class="btn btn-lg btn-google btn-block text-uppercase" type="button"><i class="fab fa-google"></i> Sign in with Google</button>
+                                    <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook"></i> Sign in with Facebook</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-  
-  
-      <!-- The core Firebase JS SDK is always required and must be listed first -->
-      <script src="/__/firebase/7.19.1/firebase-app.js"></script>
-  
-      <!-- TODO: Add SDKs for Firebase products that you want to use
-           https://firebase.google.com/docs/web/setup#available-libraries -->
-      <script src="/__/firebase/7.19.1/firebase-analytics.js"></script>
-  
-      <!-- Initialize Firebase -->
-      <script src="/__/firebase/init.js"></script>
-        </header>
 
-        <footer class="bg-dark">
-          <div class="bg-dark text-light text-center py-4" style="height: 80px;">
+
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="/__/firebase/7.19.1/firebase-app.js"></script>
+
+        <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+        <script src="/__/firebase/7.19.1/firebase-analytics.js"></script>
+
+        <!-- Initialize Firebase -->
+        <script src="/__/firebase/init.js"></script>
+    </header>
+
+    <footer class="bg-dark">
+        <div class="bg-dark text-light text-center py-4" style="height: 80px;">
             <p>Copyright @ 2020 Bear Crew - Instituto Tecnologico de Piedras Negras</p>
-          </div>
-        </footer>
+        </div>
+    </footer>
 
 
-        <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script src="js/app.js"></script>
 </body>
 </html>
