@@ -44,7 +44,7 @@ function getID(id){
         document.getElementById("filas").value = ""
         document.getElementById("columnas").value = ""
 
-        //location.reload();
+        location.reload();
     }
   }
 
@@ -67,7 +67,7 @@ function verCines(){
     cines.on("child_added",function(data){
       var cinesValor = data.val();
       var tablaC = table(cinesValor.nombre,cinesValor.filas,cinesValor.columnas);
-      innerHTML("loadCines",tablaC);
+      innerHTML("loadCine",tablaC);
     });
 }
 
