@@ -13,7 +13,7 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig); 
 
-
+/*
 const form = document.forms['insertCine'];
 //firebase.auth().onAuthStateChanged(handleAuthState);
 form.addEventListener('submit', function handleFormSubmit(event) {
@@ -40,7 +40,7 @@ form.addEventListener('submit', function handleFormSubmit(event) {
         }
     });
 });
-
+*/
     
 
 
@@ -60,31 +60,31 @@ function getID(id){
     return data
   }
 
-  //function insertarCine(){
-  //  if (document.getElementById("nombre").value == ""||document.getElementById("filas").value == ""||document.getElementById("columnas").value == "") {
-  //      alert("Porfavor llenar todos los campos requeridos");
-  //  } else {
-  //      var varnombre = getID("nombre");
-  //      var varfilas = getID("filas");
-  //      var varcolumnas = getID("columnas");
+  function insertarCine(){
+    if (document.getElementById("nombre").value == ""||document.getElementById("filas").value == ""||document.getElementById("columnas").value == "") {
+        alert("Porfavor llenar todos los campos requeridos");
+    } else {
+        var varnombre = getID("nombre");
+        var varfilas = getID("filas");
+        var varcolumnas = getID("columnas");
 
-  //      var arrayData = arrayJSON(varnombre, varfilas, varcolumnas);
-  //      console.log(arrayData);
-  //      var cine = firebase.database().ref("Cine/"+varnombre+"/");
-  //      cine.set(arrayData);
-  //      alert("Se ha guardado exitosamente");
+        var arrayData = arrayJSON(varnombre, varfilas, varcolumnas);
+        console.log(arrayData);
+        var cine = firebase.database().ref("Cine/"+varnombre+"/");
+        cine.set(arrayData);
+        alert("Se ha guardado exitosamente");
         
-  //      document.getElementById("nombre").value = ""
-  //      document.getElementById("filas").value = ""
-  //      document.getElementById("columnas").value = ""
+        document.getElementById("nombre").value = ""
+        document.getElementById("filas").value = ""
+        document.getElementById("columnas").value = ""
 
-  //      //location.reload();
-  //  }
-  //}
+        location.reload();
+    }
+  }
 
-//  function innerHTML(id,result){
-//    return document.getElementById(id).innerHTML+=result;
-//}
+  function innerHTML(id,result){
+    return document.getElementById(id).innerHTML+=result;
+}
 
 function table(nombre,filas,columnas){
     return '<tr>'+
@@ -101,7 +101,7 @@ function verCines(){
     cines.on("child_added",function(data){
       var cinesValor = data.val();
       var tablaC = table(cinesValor.nombre,cinesValor.filas,cinesValor.columnas);
-      innerHTML("loadCines",tablaC);
+      innerHTML("loadCine",tablaC);
     });
 }
 
