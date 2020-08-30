@@ -14,11 +14,11 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig); 
 
 function updateTextInput(val) {
-    document.getElementById('vp').value=val; 
+    document.getElementById('vp').value=val+"%"; 
   }
 
   function updateTextInput2(val) {
-    document.getElementById('vd').value=val; 
+    document.getElementById('vd').value=val+"m"; 
   }
 
   function getID(id){
@@ -58,5 +58,7 @@ function updateTextInput(val) {
       console.log(JSON.stringify(cinesValor));
       document.getElementById('filas').value=cinesValor.filas; 
       document.getElementById('columnas').value=cinesValor.columnas; 
+      var capacidad = cinesValor.filas*cinesValor.columnas;
+      document.getElementById('capacidad').value=capacidad; 
     });
   }
