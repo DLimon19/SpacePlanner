@@ -13,52 +13,86 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig); 
 
+
+const form = document.forms['insertCine'];
+//firebase.auth().onAuthStateChanged(handleAuthState);
+form.addEventListener('submit', function handleFormSubmit(event) {
+    event.preventDefault();
+
+    const nombre = form['nombre'].value;
+    const filas = form['filas'].value;
+    const columnas = form['columnas'].value;
+
+    firebase.database().ref('Cines/' + nombre).set({
+        nombre: nombre,
+        filas: filas,
+        columnas: columnas
+
+
+    }, function (error) {
+        if (error) {
+            //console.log(' The write failed...');
+            alert('No se puede insert');
+            // The write failed... 
+        } else {
+            // location.href = '../formularios/inicio.html';
+            console.log(' Data saved successfully!');
+        }
+    });
+});
+
+    
+
+
+   
+
+
 function getID(id){
     return document.getElementById(id).value;
   }
 
   function arrayJSON(nombre, filas, columnas){
     var data = {
-        nombre:nombre,
+        nombre:control,
         filas:filas,
         columnas:columnas,
     };
     return data
   }
 
-  function insertarCine(){
-    if (document.getElementById("nombre").value == ""||document.getElementById("filas").value == ""||document.getElementById("columnas").value == "") {
-        alert("Porfavor llenar todos los campos requeridos");
-    } else {
-        var varnombre = getID("nombre");
-        var varfilas = getID("filas");
-        var varcolumnas = getID("columnas");
+  //function insertarCine(){
+  //  if (document.getElementById("nombre").value == ""||document.getElementById("filas").value == ""||document.getElementById("columnas").value == "") {
+  //      alert("Porfavor llenar todos los campos requeridos");
+  //  } else {
+  //      var varnombre = getID("nombre");
+  //      var varfilas = getID("filas");
+  //      var varcolumnas = getID("columnas");
 
-        var arrayData = arrayJSON(varnombre, varfilas, varcolumnas);
-        console.log(arrayData);
-        var cine = firebase.database().ref("Cine/'"+varnombre+"'/");
-        cine.set(arrayData);
-        alert("Se ha guardado exitosamente");
+  //      var arrayData = arrayJSON(varnombre, varfilas, varcolumnas);
+  //      console.log(arrayData);
+  //      var cine = firebase.database().ref("Cine/"+varnombre+"/");
+  //      cine.set(arrayData);
+  //      alert("Se ha guardado exitosamente");
         
-        document.getElementById("nombre").value = ""
-        document.getElementById("filas").value = ""
-        document.getElementById("columnas").value = ""
+  //      document.getElementById("nombre").value = ""
+  //      document.getElementById("filas").value = ""
+  //      document.getElementById("columnas").value = ""
 
-        location.reload();
-    }
-  }
+  //      //location.reload();
+  //  }
+  //}
 
-  function innerHTML(id,result){
-    return document.getElementById(id).innerHTML+=result;
-}
+//  function innerHTML(id,result){
+//    return document.getElementById(id).innerHTML+=result;
+//}
 
 function table(nombre,filas,columnas){
     return '<tr>'+
        '<td>'+nombre+'</td>'+
        '<td>'+filas+'</td>'+
        '<td>'+columnas+'</td>'+
-       '<td><i class="fas fa-edit" onclick="editCine(\''+nombre+'\')"></i></td>'+
-       '<td><i class="fas fa-trash" onclick="remove(\''+nombre+'\')"></i></td>'+
+       '<td><i class="fas fa-edit" onclick="editCine('+nombre+')"></i></td>'+
+       '<td><i class="fas fa-trash" onclick="remove('+nombre+')"></i></td>'+
    '</tr>';
 }
 
@@ -67,12 +101,12 @@ function verCines(){
     cines.on("child_added",function(data){
       var cinesValor = data.val();
       var tablaC = table(cinesValor.nombre,cinesValor.filas,cinesValor.columnas);
-      innerHTML("loadCine",tablaC);
+      innerHTML("loadCines",tablaC);
     });
 }
 
 function editCine(nombre){
-    var cines = firebase.database().ref("Cine/'"+nombre+"'/");
+    var cines = firebase.database().ref("Cine/"+nombre+"/");
     cines.on("value",function(snapshot){
         var cinesValor = snapshot.val();
         document.getElementById("nombre").value = cinesValor.nombre;
@@ -84,7 +118,7 @@ function editCine(nombre){
   }
 
   function remove(nombre){
-      var cine = firebase.database().ref("Cine/'"+nombre+"'/");
+      var cine = firebase.database().ref("Cine/"+nombre+"/");
       cine.remove();
       location.reload();
   }
