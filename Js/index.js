@@ -53,7 +53,7 @@ function getID(id){
 
   function arrayJSON(nombre, filas, columnas){
     var data = {
-        nombre:control,
+        nombre:nombre,
         filas:filas,
         columnas:columnas,
     };
@@ -70,7 +70,7 @@ function getID(id){
 
         var arrayData = arrayJSON(varnombre, varfilas, varcolumnas);
         console.log(arrayData);
-        var cine = firebase.database().ref("Cine/"+varnombre+"/");
+        var cine = firebase.database().ref("Cine/'"+varnombre+"'/");
         cine.set(arrayData);
         alert("Se ha guardado exitosamente");
         
@@ -91,8 +91,8 @@ function table(nombre,filas,columnas){
        '<td>'+nombre+'</td>'+
        '<td>'+filas+'</td>'+
        '<td>'+columnas+'</td>'+
-       '<td><i class="fas fa-edit" onclick="editCine('+nombre+')"></i></td>'+
-       '<td><i class="fas fa-trash" onclick="remove('+nombre+')"></i></td>'+
+       '<td><i class="fas fa-edit" onclick="editCine(\''+nombre+'\')"></i></td>'+
+       '<td><i class="fas fa-trash" onclick="remove(\''+nombre+'\')"></i></td>'+
    '</tr>';
 }
 
@@ -106,7 +106,7 @@ function verCines(){
 }
 
 function editCine(nombre){
-    var cines = firebase.database().ref("Cine/"+nombre+"/");
+    var cines = firebase.database().ref("Cine/'"+nombre+"'/");
     cines.on("value",function(snapshot){
         var cinesValor = snapshot.val();
         document.getElementById("nombre").value = cinesValor.nombre;
@@ -118,7 +118,7 @@ function editCine(nombre){
   }
 
   function remove(nombre){
-      var cine = firebase.database().ref("Cine/"+nombre+"/");
+      var cine = firebase.database().ref("Cine/'"+nombre+"'/");
       cine.remove();
       location.reload();
   }
