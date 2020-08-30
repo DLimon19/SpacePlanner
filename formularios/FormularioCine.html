@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/main.css">
     <script src="https://kit.fontawesome.com/8ac459535a.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body onload="verCines()">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -52,13 +52,14 @@
                       </div>
                       <div class="row">
                         <div class="form-group col-md-6">
+                            <label for="filas">Filas</label>
+                            <input type="text" class="form-control" id="filas" required>
+                        </div>
+                        <div class="form-group col-md-6">
                           <label for="columnas">Columnas</label>
                           <input type="text" class="form-control" id="columnas" required>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="filas">Filas</label>
-                            <input type="text" class="form-control" id="filas" required>
-                          </div>
+                        
                       </div>
                       
                       <button type="submit" class="btn btn-primary" onclick="insertarCine()">Registrar</button>
