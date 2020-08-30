@@ -1,113 +1,423 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../content/ejthemes/default-theme/ej.web.all.min.css" rel="stylesheet" />
+    <link href="../Sala/themes/css/sample.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="../content/images/favicon.ico" />
+
+
     <title>SpacePlanner-Inicio</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/main.css">
     <script src="https://kit.fontawesome.com/8ac459535a.js" crossorigin="anonymous"></script>
+
+
+    <!--[if lt IE 9]>
+        <script src="../../scripts/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <!--<![endif]-->
+    <!--[if gte IE 9]><!-->
+    <script src="../scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+    <!--<![endif]-->
+
+    <script src="../scripts/jsrender.min.js"></script>
+    <script src="../scripts/ej.web.all.min.js"></script>
+    <script src="../Sala/scripts/dataSource.js"></script>
+    <script src="../Sala/scripts/sample.js"></script>
 </head>
 <body onload="verCines()">
+
+
+
+
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="./inicio.html">
-                <img src="../imagenes/logo-sp2.png" alt="" style="width: 20%;"> 
+                <img src="../imagenes/logo-sp2.png" alt="" style="width: 20%;">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link" href="./FormularioCine.html">Cines</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="">Planeacion</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-light btn btn-danger" href="../index.html" id="nombreUsuario">Logout</a>
-                  </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./FormularioCine.html">Cines</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Planeacion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light btn btn-danger" href="../index.html" id="nombreUsuario">Logout</a>
+                    </li>
                 </ul>
-              </div>
-        </div>
-      </nav>
-    
-      <header class="main-header">
-        <div class="background-overlay text-white">
-        <div class="container">
-          <div class="row">
-            <div class="container text-center">
-                <h1>Planeacion</h1>
-                <!--formulario-->
-                <div class="row">
-                  <div class="col-md-12">
-                    <form>
-                      <div class="form-row">
-                        <div class="form-group col-md-4">
-                          <label for="nombre">Cine</label>
-                          <select class="custom-select" id="cines" onchange="verValores(this.value)" required>
-                            <option value="">--</option>
-                          </select>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="filas">Filas</label>
-                            <input type="text" class="form-control" id="filas" disabled>
-                        </div>
-                        <div class="form-group col-md-2">
-                          <label for="columnas">Columnas</label>
-                          <input type="text" class="form-control" id="columnas" disabled>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="capacidad">Capacidad maxima</label>
-                            <input type="text" class="form-control" id="capacidad" disabled>
-                          </div>
-                      </div>
-
-                      <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="porcentaje">Porcentaje de capacidad</label>
-                            <input type="range" id="porcentaje" name="porcentaje" min="0" max="100" step="1" onchange="updateTextInput(this.value);">
-                            <input type="text" id="vp" value="" disabled>
-                        </div>
-                        <div class="form-group col-md-6">
-                          <label for="distancia">Distanciamiento minimo</label>
-                          <input type="range" id="distancia" name="distancia" min="0" max="10" step="0.5" onchange="updateTextInput2(this.value);">
-                          <input type="text" id="vd" value="" disabled>
-                        </div>
-                      </div>
-                      
-                      <button type="button" class="btn btn-primary" onclick="">Planeacion</button>
-                    </form>
-                  </div>
-                  
-                </div>
-                
-
             </div>
-                
-          </div>
         </div>
-      </div>
-  
-  
+    </nav>
 
-        </header>
+    <header class="main-header">
+        <div class="background-overlay text-white">
+            <div class="container">
+                <div class="row">
+                    <div class="container text-center">
+                        <h1>Planeacion</h1>
+                        <!--formulario-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="nombre">Cine</label>
+                                            <select class="custom-select" id="cines" onchange="verValores(this.value)" required>
+                                                <option value="">--</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="filas">Filas</label>
+                                            <input type="text" class="form-control" id="filas" disabled>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="columnas">Columnas</label>
+                                            <input type="text" class="form-control" id="columnas" disabled>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="capacidad">Capacidad maxima</label>
+                                            <input type="text" class="form-control" id="capacidad" disabled>
+                                        </div>
+                                    </div>
 
-        <footer class="bg-dark">
-          <div class="bg-dark text-light text-center py-4" style="height: 80px;">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="porcentaje">Porcentaje de capacidad</label>
+                                            <input type="range" id="porcentaje" name="porcentaje" min="0" max="100" step="1" onchange="updateTextInput(this.value);">
+                                            <input type="text" id="vp" value="" disabled>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="distancia">Distanciamiento minimo</label>
+                                            <input type="range" id="distancia" name="distancia" min="0" max="10" step="0.5" onchange="updateTextInput2(this.value);">
+                                            <input type="text" id="vd" value="" disabled>
+                                        </div>
+                                    </div>
+
+                                    <button type="button"  id="btnOpenPopup" class="bookNow" style="float: right; display:  block;" value="Book Now">Planeacion</button>
+                                </form>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+    </header>
+
+    <footer class="bg-dark">
+        <div class="bg-dark text-light text-center py-4" style="height: 80px;">
             <p>Copyright @ 2020 Bear Crew - Instituto Tecnologico de Piedras Negras</p>
-          </div>
-        </footer>
+        </div>
+    </footer>
+
+    <div class="sampleContainer">
+        <table class="sampleOuterTable" cellspacing="15">
+            <!--<tr>
+                <td></td>
+                <td style="text-align: right; height: 40px;">
+                    <input type="button" id="btnOpenPopup" class="bookNow" style="float: right; display:  block;" value="Book Now" />
+                    <div style="height: 10px; width: 100%;"></div>
+                </td>
+            </tr>-->
+            <tr>
+                <td id="Property_space" style="width: 325px; display:none">
+                    <div style="padding-bottom: 85px;">
+                        <div class="userInteractionDiv">
+                            <table class="userInteractionTable">
+                                <!--<tr>
+                                    <td>
+                                        <label>Travel Type</label><br />
+                                    </td>
+                                </tr>-->
+                                <!--<tr>
+                                    <td colspan="2">
+                                        <div class="travelTypeDiv">
+                                            <table>
+                                                <tr>
+                                                    <td style="width: 80%;">
+                                                        <label id="travelType">One Way</label>
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" id="btnOneWay" />
+                                                        <input type="checkbox" id="btnRoundTrip" /></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>-->
+                                <tr>
+                                    <td>
+                                        <label>Adult</label>
+                                    </td>
+                                    <td>
+                                        <label>Child</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100px">
+                                        <div>
+                                            <input type="button" id="adultDecrement" value="-" class="iconButton" />
+                                            <input type="text" value="3" id="adultCount" onkeypress="return isNumber(event)" class="countBox" />
+                                            <input type="button" id="adultIncrement" value="+" class="iconButton" />
+                                        </div>
+                                    </td>
+                                    <td style="width: 100px">
+                                        <div>
+                                            <input type="button" id="childDecrement" value="-" class="iconButton" />
+                                            <input type="text" value="2" id="childCount" onkeypress="return isNumber(event)" class="countBox" />
+                                            <input type="button" id="childIncrement" value="+" class="iconButton" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <!--<tr>
+                                    <td>Leaving From</td>
+                                </tr>-->
+                                <!--<tr>
+                                    <td colspan="2">
+                                        <input type="text" id="fromCityName" class="cityList" style="width: 100%;" value="Chennai" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Going To</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <input type="text" id="toCityName" class="cityList" style="width: 100%;" /></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Departure</label></td>
+                                    <td>
+                                        <label>Return</label></td>
+                                </tr>-->
+                                <!--<tr>
+                                    <td>
+                                        <input type="text" id="departureDate" class="datepick" />
+                                    </td>
+                                    <td>
+                                        <input type="text" id="returnDate" class="datepick" />
+                                    </td>
+                                </tr>-->
+                                <!--<tr>
+                                    <td style="height: 10px;"></td>
+                                </tr>-->
+                                <!--<tr>
+                                    <td colspan="2">
+                                        <input type="button" id="btnSearchFlight" value="SEARCH FOR FLIGHT" />
+                                    </td>
+                                </tr>-->
+                            </table>
+                        </div>
+                        <!--<div class="sliderDiv">
+                            <table class="slideTable">
+                                <tr>
+                                    <td>
+                                        <label>Price Range</label></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="priceRangeSlider"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <span id="minPrice"></span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="maxPriceSpan" style="margin-left: 201px;" id="maxPrice"></span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>Departure Time</label><br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div id="timeRangeSlider"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <span id="minTime"></span>
+                                                    </td>
+                                                    <td>
+                                                        <span style="margin-left: 212px;" id="maxTime"></span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>-->
+                    </div>
+                </td>
+                <!--<td id="gid_space" colspan="2" style="vertical-align: top;">
+                    <div id="FlightTicketBooking"></div>
+                </td>-->
+            </tr>
+        </table>
+    </div>
+    <div id="diagramView" class="zoom-anim-dialog mfp-hide" style="display: none; height: 100%; width: 100%;">
+        <div id="backIcon" onclick="backButtonClick()" style=""></div>
+        <div id="popupContent">
+            <table class="countIconTable">
+                <tr>
+                    <td colspan="2" style="height: 15%;"></td>
+                </tr>
+                <tr>
+                    <td id="ResItemBox" class="countIconColumn">
+                        <div style="font-size: 12px;">
+                            Select your seat by dragging the passenger icon to any available seat.
+                        </div>
+                        <br />
+                        <div>
+                            <span id="adultCountDisplay"></span>
+                            <div class="iconDiv">
+                                <div id="adultIconDisplay">
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div>
+                            <span id="childCountDisplay"></span>
+                            <div class="iconDiv">
+                                <div id="childIconDisplay">
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td id="DiagramArea">
+                        <div id="diagramContent"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height: 18px;"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="button" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="bg_mask" style="margin-top: -163px; margin-left: 0px; ">
+            <div id="frontlayer">
+                <span style="font-size: 17px">Your booking has been confirmed. </span>
+                <br />
+                <br />
+                <span style="font-size: 17px">Thanks for choosing our service</span><br />
+                <br />
+                <span style="color: #22BAF1; font-size: 22px;">Have a Great journey !</span><br />
+                <br />
+                <div class="print">
+                    <button id="printticket">Print Ticket</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ticketinformation" >
+
+        <table cellpadding="10" cellspacing="0" style="margin:10% ; width: 60%">
+            <tr class="ticket1" style="background-color:#4682B4">
+                <td style="width:40%"> <h3 style="color:#FFFFFF"> Airline Ticket Reservation</h3></td>
+                <td colspan="2">
+                    <img src="Images/Images-02.png" style="float:right" />
+                </td>
+            </tr>
+            <tr class="ticket" style="background-color:#F8F8FF">
+                <td> Airline Name<b> <span class="name"></span></b></td>
+                <td> </td>
+                <td></td>
+            </tr>
+            <tr class="ticket">
+                <td>
+                    <span>Departing From</span><br />
+                    <b><span class="departure"></span> </b>
+                </td>
+                <td style="width: 20%"> <img src="Images/Images-03.png" /> </td>
+                <td>
+                    <span>Destination</span><br />
+                    <b><span class="destination"></span></b>
+                </td>
+            </tr>
+
+            <tr class="ticket">
+                <td>
+                    <span>Depart Time</span><br />
+                    <b><span class="depart"></span></b>
+                </td>
+                <td style="width: 20%"><img src="Images/Images-03.png" /></td>
+                <td>
+                    <span>Arrive Time</span><br />
+                    <b><span class="arrive"></span></b>
+                </td>
+            </tr>
+
+            <tr class="ticket">
+                <td>
+                    Rating:
+                    <b><span class="rating"></span></b>
+                </td>
+                <td></td>
+                <td>
+                    Price: <b>$<span class="price"></span></b>
+                </td>
+
+            </tr>
+            <tr class="ticket">
+                <td>
+                    <h4 style="color: blue">Have a Happy Journey!</h4>
+                </td>
+                <td colspan="2">
+                    <p style="float:right">Airline Ticket Reservation System</p>
+                    <p style="float:right">Need help?  Call:+XX-XXXXXXXXXX or Mail: mail@help.in</p>
+                </td>
+            </tr>
+        </table>
+    </div>
 
 
-        <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
-        <script type="text/javascript" src="../Js/indexp.js"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
+    <script type="text/javascript" src="../Js/indexp.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </body>
 </html>

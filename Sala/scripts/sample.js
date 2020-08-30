@@ -12,6 +12,7 @@ var maxTime = null;
 var nHoverNode = null;
 var oHoverNode = null;
 var data = [];
+
 $(window).on("load", function () {
     data = GetData();
     var cities = [];
@@ -154,12 +155,30 @@ $(window).on("load", function () {
         mouseEnter: nodemouseenter,
         pageSettings: { showPageBreaks: false, multiplePage: false, pageOrientation: "landscape", pageWidth: 625, pageHeight: 357, pageBackgroundColor: "transparent", pageBorderWidth: 0, scrollLimit: "diagram" },
         snapSettings: { snapConstraints: null },
-        backgroundImage: { source: "themes/images/sala.png", scale: "none" }
+        backgroundImage: { source: "../Sala/themes/images/sala.png", scale: "none" }
     });
 
 
     $("#btnOpenPopup").bind("click", function () {
+        nodes = addDiagramContents();
+        $("#diagramContent").ejDiagram({
+            nodes: nodes,
+            width: "625px",
+            height: "457px",
+            constraints: ej.datavisualization.Diagram.DiagramConstraints.Default & ~ej.datavisualization.Diagram.DiagramConstraints.Zoomable,
+            click: onNodeClick,
+            drop: onItemDrop,
+            drag: nodedragging,
+            mouseLeave: nodemouseleave,
+            mouseEnter: nodemouseenter,
+            pageSettings: { showPageBreaks: false, multiplePage: false, pageOrientation: "landscape", pageWidth: 625, pageHeight: 357, pageBackgroundColor: "transparent", pageBorderWidth: 0, scrollLimit: "diagram" },
+            snapSettings: { snapConstraints: null },
+            backgroundImage: { source: "../Sala/themes/images/sala.png", scale: "none" }
+        });
+
         openPopup();
+
+
     });
     $("#btnBookNow").bind("click", function () {
         bookNow();
@@ -213,11 +232,11 @@ function onItemDrop(args) {
             var result = testChildParent(args.draggable[0]);
             if (result == "adult") {
                 adultAdded = true;
-                imageSrc = "themes/images/icon_Adult.png";
+                imageSrc = "../Sala/themes/images/icon_Adult.png";
             }
             else {
                 childAdded = true;
-                imageSrc = "themes/images/Backicon1.png";
+                imageSrc = "../Sala/themes/images/Backicon1.png";
                 
             }
             if (adultCount > 0 || childCount > 0) {
@@ -295,18 +314,22 @@ function backButtonClick() {
 
 function addDiagramContents() {
     var nodes = [];
+    var fila = document.getElementById("filas").value;
+    var columnas = document.getElementById("columnas").value;
     //createNode("seatA1", 120, 120, 26, 23, nodes);
     //createNode("seatA2", 140, 120, 26, 23, nodes);
     //createNode("seatA2", 230, 120, 26, 23, nodes);
     //createNode("seatA4", 305, 120, 26, 23, nodes, "booked");
-    var ejeX = 125;
-    var ejeY = 90;
-    for (var i = 0; i < 10; i++) {
+
+    
+    var ejeX = 10;
+    var ejeY = 30;
+    for (var i = 0; i < columnas ; i++) {
 
     
         ejeY = ejeY + 30;
-        ejeX = 125;
-        for (var j = 0; j < 10; j++) {
+        ejeX = 50;
+        for (var j = 0; j < fila; j++) {
 
             if (i % 2 == 0 && j%2!=0) {
                 createNode("seatA" + i + "" + j, ejeX, ejeY, 26, 23, nodes, "booked");
@@ -466,7 +489,7 @@ function addAdultIcon() {
     var img = document.createElement("img");
     img.setAttribute("class", "selectAdultObject");
     img.setAttribute("style", "margin-top:10px;margin-left:10px;border:2px solid lightblue");
-    img.setAttribute("src", "themes/images/icon_Adult.png");
+    img.setAttribute("src", "../Sala/themes/images/icon_Adult.png");
     img.setAttribute("draggable", "true");
     $(span).ejDraggable({
         clone: true,
@@ -503,7 +526,7 @@ function addChildIcon() {
     var img = document.createElement("img");
     img.setAttribute("class", "selectchildObject");
     img.setAttribute("style", "margin-top:10px;margin-left:10px;border:2px solid lightblue");
-    img.setAttribute("src", "themes/images/Backicon1.png");
+    img.setAttribute("src", "../Sala/themes/images/Backicon1.png");
     img.setAttribute("draggable", "true");
 
     $(span).ejDraggable({
