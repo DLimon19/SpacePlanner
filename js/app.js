@@ -94,7 +94,7 @@ function loginUser(email, password) {
 
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then(function (user) {
-            console.log('Credenciales correctas, ¡bienvenido!');
+            console.log('Credenciales correctas, ï¿½bienvenido!');
             location.href = 'formularios/inicio.html';
           
             
@@ -161,3 +161,4 @@ function LoginGoogle() {
 
     
 }
+

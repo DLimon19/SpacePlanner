@@ -1,3 +1,18 @@
+var firebaseConfig = {
+  apiKey: "AIzaSyAA8U_00pwHAun-ZZl-D1S8PmO1Y1bbJZw",
+  authDomain: "space-planner-438cc.firebaseapp.com",
+  databaseURL: "https://space-planner-438cc.firebaseio.com",
+  projectId: "space-planner-438cc",
+  storageBucket: "space-planner-438cc.appspot.com",
+  messagingSenderId: "956751240382",
+  appId: "1:956751240382:web:a2dd0db833ff96c40012ef",
+  measurementId: "G-PRHWGHREYZ",
+  clientId: "956751240382 - oagm27emft4f64mcanhaht4t86ge1uk4.apps.googleusercontent.com"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig); 
+
 function getID(id){
     return document.getElementById(id).value;
   }
@@ -21,7 +36,7 @@ function getID(id){
 
         var arrayData = arrayJSON(varnombre, varfilas, varcolumnas);
         console.log(arrayData);
-        var cine = firebase.database().ref(varnombre+"/");
+        var cine = firebase.database().ref("Cine/"+varnombre+"/");
         cine.set(arrayData);
         alert("Se ha guardado exitosamente");
         
@@ -29,7 +44,7 @@ function getID(id){
         document.getElementById("filas").value = ""
         document.getElementById("columnas").value = ""
 
-        location.reload();
+        //location.reload();
     }
   }
 
@@ -48,7 +63,7 @@ function table(nombre,filas,columnas){
 }
 
 function verCines(){
-    var cines = firebase.database().ref("/");
+    var cines = firebase.database().ref("Cine/");
     cines.on("child_added",function(data){
       var cinesValor = data.val();
       var tablaC = table(cinesValor.nombre,cinesValor.filas,cinesValor.columnas);
@@ -57,7 +72,7 @@ function verCines(){
 }
 
 function editCine(nombre){
-    var cines = firebase.database().ref(nombre+"/");
+    var cines = firebase.database().ref("Cine/"+nombre+"/");
     cines.on("value",function(snapshot){
         var cinesValor = snapshot.val();
         document.getElementById("nombre").value = cinesValor.nombre;
@@ -69,7 +84,7 @@ function editCine(nombre){
   }
 
   function remove(nombre){
-      var cine = firebase.database().ref(nombre+"/");
+      var cine = firebase.database().ref("Cine/"+nombre+"/");
       cine.remove();
       location.reload();
   }
