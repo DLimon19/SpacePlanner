@@ -328,7 +328,7 @@ function addDiagramContents() {
 
     
         ejeY = ejeY + 30;
-        ejeX = 50;
+        ejeX = 30;
         for (var j = 0; j < fila; j++) {
 
             if (i % 2 == 0 && j%2!=0) {
@@ -340,8 +340,8 @@ function addDiagramContents() {
             
                
             
-         
-            ejeX = ejeX + 55;
+
+            ejeX = ejeX + (600 / fila);
 
         }
 
