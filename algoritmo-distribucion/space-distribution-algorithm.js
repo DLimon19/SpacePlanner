@@ -1,4 +1,6 @@
-//Convierte un string como '2 3' a una tupla (2,3)
+
+function hacerArreglo(){
+    //Convierte un string como '2 3' a una tupla (2,3)
 function seat_to_point(seat)
 {
     let tuple = seat.split(' ')
@@ -22,39 +24,45 @@ function min_from_array(arr)
 }
 
 let layout =[
-                [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
+                [1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+                [1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
 
-                [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
-                [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1]
             ]
-let total=0;
-// layout.forEach((num)=> {
-//     total+=num
-// });
+
+let total=0
+var filasv = document.getElementById("filas").value;
+var columnasv = document.getElementById("columnas").value;
+/*for(var i = 0; i<columnasv;i++){
+    for(var j = 0; j<filasv;j++){
+        layout[i][j] = "1";
+    }
+}
+
+for(var i = 0; i<layout.length;i++){
+    for(var j = 0; j<layout[0].length;j++){
+        if(i>filas || j>columnas)
+        layout[i][j].remove();
+    }
+}*/
+//let total=document.getElementById("capacidad").value
+ //layout.forEach((num)=> {
+ //    total+=num
+ //});
 layout.forEach(row => row.forEach(val => total += val))
 
 //Porcentaje admitido
-let percentage = .19
+let percentage = document.getElementById("porcentaje").value/100;
 //Distancia en metros
 let seat_side_length = .75
-let safe_distance = 1.5
+let safe_distance = document.getElementById("distancia").value
 let safe_units = Math.ceil(safe_distance / seat_side_length)
 
 console.log('total: ' + total)
@@ -128,6 +136,7 @@ if (is_possible) {
     for (let y = 0; y < layout.length; y++) {
         let row = ''
         for (let x = 0; x < layout[0].length; x++) {
+            //if(layout[y][x]==1)
             row += `${layout[y][x]} `
         }
 
@@ -135,5 +144,7 @@ if (is_possible) {
     }
 
     // layout.forEach(row => row.forEach())
+    }
 }
+
     
