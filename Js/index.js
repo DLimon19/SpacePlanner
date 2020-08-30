@@ -19,7 +19,7 @@ function getID(id){
 
   function arrayJSON(nombre, filas, columnas){
     var data = {
-        nombre:control,
+        nombre:nombre,
         filas:filas,
         columnas:columnas,
     };
